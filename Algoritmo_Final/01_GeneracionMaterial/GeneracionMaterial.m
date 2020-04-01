@@ -25,7 +25,7 @@ stop(video);
 close(outvideo);
 
 %% Reescalado de video
-invideo = VideoReader('01_ColorNaranja_raw.avi');
+invideo = VideoReader('01_ColorNaranja_raw.avi');  %Video a 640x480
 
 nFrames = invideo.NumFrames;
 
@@ -36,17 +36,32 @@ outvideo2.FrameRate = invideo.FrameRate;
 open(outvideo2);
 for i=1:nFrames
    IFrame = read(invideo,i);
-   IFrame_reescalado = imresize ( IFrame , [240 NaN] );
+   IFrame_reescalado = imresize ( IFrame , [240 NaN] ); %Se reescala a 240x320
    writeVideo(outvideo2, IFrame_reescalado);
 end
 close(outvideo2);
 
 
 %%Generación del conjunto de datos 
-clear
+clear all, clc;
+
+video = VideoReader('01_ColorNaranja.avi');
+nFrames = video.NumFrames; %150 frames
+
+% Generaremos un conjunto de 25 muestras
+imagenes_naranja=uint8(zeros(240,320,3,25)); 
+numImagen=1; %Contador
+for i=1:6:nFrames
+    imagenes_naranja(:,:,:,numImagen) = read(video,i);  
+    imshow(imagenes_naranja(:,:,:,numImagen));
+    pause;
+    numImagen=numImagen+1;
+end
+
+size(imagenes_naranja)
 
 
-imagenes_naranja=[];
+
 
 
 
