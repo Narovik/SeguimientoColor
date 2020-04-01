@@ -1,18 +1,16 @@
+clear all, clc;
 %% Captura del vídeo
 % Configuración dispositivo de captura
 video=videoinput('winvideo',1,'RGB24_640x480'); %30 fps
 video.ReturnedColorSpace = 'rgb';
 
-Resolucion = video.videoResolution;
-NumFilas = Resolucion(2);
-NumColumnas = Resolucion(1);
-
 % Forma de trabajo: grabación continua
 video.TriggerRepeat=Inf;
 video.FrameGrabInterval=3; %30/3=10fps 
+preview(video);
 
 % Configuración video de salida
-outvideo = VideoWriter('01_ColorNaranja.avi');
+outvideo = VideoWriter('01_ColorNaranja_raw.avi','Uncompressed AVI');
 outvideo.FrameRate = 10; %10 fps video de salida
 
 %Grabación del video
@@ -26,9 +24,27 @@ end
 stop(video);
 close(outvideo);
 
+%% Reescalado de video
+invideo = VideoReader('01_ColorNaranja_raw.avi');
+
+nFrames = invideo.NumFrames;
+
+outvideo2 = VideoWriter('01_ColorNaranja.avi','Uncompressed AVI');
+outvideo2.FrameRate = invideo.FrameRate;
+
+
+open(outvideo2);
+for i=1:nFrames
+   IFrame = read(invideo,i);
+   IFrame_reescalado = imresize ( IFrame , [240 NaN] );
+   writeVideo(outvideo2, IFrame_reescalado);
+end
+close(outvideo2);
+
+
 %%Generación del conjunto de datos 
 clear
-video = VideoReader('01_ColorNaranja.avi');
+
 
 imagenes_naranja=[];
 
