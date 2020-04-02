@@ -53,15 +53,15 @@ imagenes_naranja=uint8(zeros(240,320,3,25));
 numImagen=1; %Contador
 for i=1:6:nFrames
     imagenes_naranja(:,:,:,numImagen) = read(video,i);  
-    imshow(imagenes_naranja(:,:,:,numImagen));
+    imshow(imagenes_naranja(:,:,:,numImagen)),title(num2str(numImagen));
     pause;
     numImagen=numImagen+1;
 end
 
 size(imagenes_naranja)
 
-
-
+%Guardar las variables en un archivo para servir a futuras etapas
+save('ImagenesEntrenamiento_Naranja.mat', 'imagenes_naranja');
 
 
 
