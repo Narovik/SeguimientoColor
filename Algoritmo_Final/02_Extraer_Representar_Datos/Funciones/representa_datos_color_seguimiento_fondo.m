@@ -1,9 +1,4 @@
-clear all, clc;
-
-% Cargar el conjunto de datos de forma variable
-Color = 'naranja';
-sentenciaTexto = ['load ConjuntoDatos_' Color '.mat']; %Concatena
-eval(sentenciaTexto); %Ejecuta
+function representa_datos_color_seguimiento_fondo(X,Y)
 
 numDatos = size(X,1);
 numClases = length(unique(Y));
@@ -34,4 +29,4 @@ axis([ValorMin ValorMax ValorMin ValorMax ValorMin ValorMax]);
 legend('Datos Fondo', 'Datos Color');
 
 
-
+end
