@@ -5,7 +5,7 @@ numClases = length(unique(Y));
 
 nombreClases{1} = {'Muestras del color de fondo de la escena'};
 nombreClases{2} = {'Muestras del color de seguimiento'};
-colorClases{1} = '.black'; colorClases{2} = '.r';
+colorClases{1} = '.red'; colorClases{2} = '.green';
 
 %% 2.2.1 Representacion en el espacio RGB
 

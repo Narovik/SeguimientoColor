@@ -45,7 +45,7 @@ end
 save('./02_Extraer_Representar_Datos/DatosFondo_naranja.mat', 'DatosFondo');
 
 
-%% 2.1.3 Generar el conjunto de datos X e Y
+%% 2.1.3 GENERAR EL CONJUNTO DE DATOS X E Y
 
 X = [DatosColor(:,2:4)          ;  DatosFondo(:,2:4)]; %Descartamos la col identificador
 
@@ -54,10 +54,28 @@ Y = [ones(size(DatosColor,1),1) ; zeros(size(DatosFondo,1),1)];
 % Guardamos las variables
 save('./02_Extraer_Representar_Datos/VariablesGeneradas/ConjuntoDatos_naranja.mat','X','Y');
 
-%% Representacion de la informacion
+%% REPRESENTACION DE LA INFORMACION
 % Cargar el conjunto de datos de forma variable
 Color = 'naranja';
 sentenciaTexto = ['load ConjuntoDatos_' Color '.mat']; %Concatena
 eval(sentenciaTexto); %Ejecuta
 
 representa_datos_color_seguimiento_fondo(X,Y);
+
+
+%% DETECCIÓN Y ELIMINACION DE OUTLIERS
+% Cargamos los datos
+load 'VariablesGeneradas/ConjuntoDatos_naranja.mat';
+% Generación del conjunto final de datos
+pos_outliers = funcion_detecta_outliers_clase_interes(X,Y);
+%Los elimanos del conjunto de datos
+X(pos_outliers,:) = [];
+Y(pos_outliers) = [];
+
+% Representación
+representa_datos_color_seguimiento_fondo(X,Y);
+
+% Guardamos el nuevo conjunto de datos final
+save('./02_Extraer_Representar_Datos/VariablesGeneradas/ConjuntoDatos_naranja.mat','X','Y');
+
+
