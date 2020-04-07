@@ -54,10 +54,14 @@ Y = [ones(size(DatosColor,1),1) ; zeros(size(DatosFondo,1),1)];
 % Guardamos las variables
 save('./02_Extraer_Representar_Datos/VariablesGeneradas/ConjuntoDatos_naranja.mat','X','Y');
 
-%% Representacion de la informacion
+%% 2.2.1 Representacion de la informacion
 % Cargar el conjunto de datos de forma variable
 Color = 'naranja';
 sentenciaTexto = ['load ConjuntoDatos_' Color '.mat']; %Concatena
 eval(sentenciaTexto); %Ejecuta
 
 representa_datos_color_seguimiento_fondo(X,Y);
+
+%% 2.3 Eliminación de valores atípicos o outliers
+
+
