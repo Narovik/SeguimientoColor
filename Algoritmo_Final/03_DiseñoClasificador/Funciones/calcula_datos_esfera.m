@@ -39,18 +39,29 @@ centroideT = valoresMedios';
 % datosEsfera = [datosEsfera r1];
 
 % FORMA 2:
-
 datosT = XObjeto';
 % Repite el centroide para poder hacer la resta uno a uno
 centroideAmp = repmat(centroideT, 1, size(datosT,2)); 
 
-vectorDistancia = sqrt(sum( datosT - centroideAmp ).^2);
+vectorDistancia = sqrt(sum(( datosT - centroideAmp ).^2));
 
 distanciaMax = max(vectorDistancia);
 r1 = distanciaMax;
 datosEsfera = [datosEsfera r1];
 
+%% 3 Calcular Radio2 que no detecte ningun ruido de fondo
+datosFondoT = XFondo';
+centroideAmpFondo = repmat(centroideT, 1, size(datosFondoT,2)); 
+vectorDistanciaFondo = sqrt(sum((datosFondoT - centroideAmpFondo ).^2));
 
+r2 = min(vectorDistanciaFondo);
+datosEsfera = [datosEsfera r2];
+
+%% 4 Calcular Radio12 que es un radio de compromosio entre r1 y r2
+% Valor medio de los radios anteriores
+
+r12 =(r1+r2)/2;
+datosEsfera = [datosEsfera r12];
 
 end
 

@@ -54,10 +54,22 @@ Rc = valoresMedios(1); Gc = valoresMedios(2); Bc = valoresMedios(3);
 close all, representa_datos_color_seguimiento(X,Y);
 hold on, plot3(Rc,Gc,Bc, '*k');
 
-% Calcular radio de la esfera: diferentes criterios según el compromiso
+% Calcular los datos de la esfera 
+% datosEsfera [centroideR centroideG centroideB r1 r2 r12]
 
-% 1: NO PERDER NINGUN PIXEL
+datosEsfera = calcula_datos_esfera(X,Y);
 
+centroide = datosEsfera(1:3);
+radios = datosEsfera(4:6);
+r1 = datosEsfera(4);
+r2 = datosEsfera(5);
+r12 = datosEsfera(6);
+
+for i=1:length(radios)
+   representa_datos_color_seguimiento_fondo(X,Y);
+   hold on, representa_esfera(centroide, radios(i)), hold off
+   title(['Esdera de Radio: ' num2str(radios(i))])
+end
 
 
 
