@@ -125,3 +125,5 @@ X(pos_outliers,:) = [];
 Y(pos_outliers) = [];
 representa_datos_color_seguimiento_fondo(X,Y);
 
+% Guardar los nuevos datos
+save('./02_Extraer_Representar_Datos/VariablesGeneradas/ConjuntoDatos.mat','X','Y');
