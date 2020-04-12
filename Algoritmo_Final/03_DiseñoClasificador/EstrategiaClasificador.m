@@ -1,6 +1,7 @@
 clear all, clc;
 % Cargamos los datos
 load './02_Extraer_Representar_Datos/VariablesGeneradas/ConjuntoDatos.mat';
+load './02_Extraer_Representar_Datos/VariablesGeneradas/conjunto_de_datos_fran.mat';
 
 % Representacion de los datos
 representa_datos_color_seguimiento_fondo(X,Y);
@@ -38,6 +39,8 @@ close all;
 % CLASIFICADOR: un pixel será reconocido como objeto si sus valores RGB
 % estan entre el maximo y el minimo del prisma
 
+
+
 clear all,clc;
 %% SEGUNDA OPCION 
 % CARACTERIZACION BASADA EN SUPERFICIE ESFERICA CENTRADA EN COLOR MEDIO
@@ -68,9 +71,10 @@ r12 = datosEsfera(6);
 for i=1:length(radios)
    representa_datos_color_seguimiento_fondo(X,Y);
    hold on, representa_esfera(centroide, radios(i)), hold off
-   title(['Esdera de Radio: ' num2str(radios(i))])
+   title(['Esfera de Radio: ' num2str(radios(i))])
 end
 
+save('03_DiseñoClasificador/VariablesGeneradas/datosEsfera.mat', 'datosEsfera');
 
 
 
