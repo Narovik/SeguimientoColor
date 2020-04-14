@@ -9,5 +9,7 @@ XObjeto = X(FoI, :);
 k=4; % Numero de agrupaciones
 idx = funcion_kmeans(XObjeto,k);
 
-
+%Representacion
+representa_datos_fondo(X,Y), hold on
+representa_datos_color_seguimiento_por_agrupacion(XObjeto,idx);
 
