@@ -1,4 +1,4 @@
-function representa_esfera(Centro, Radio)
+function representa_esfera(Centro, Radio, Color)
     
     [R,G,B] = sphere(100);
     Rc = Centro(1);
@@ -9,7 +9,7 @@ function representa_esfera(Centro, Radio)
     y = Radio*G(:)+Gc;
     z = Radio*B(:)+Bc;
     
-    plot3(x,y,z, '.b');
+    plot3(x,y,z, Color);
 
 end
 
