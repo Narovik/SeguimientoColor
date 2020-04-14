@@ -32,9 +32,11 @@ for i=1:numAgrupaciones
     
 end
 
+save('03_DiseñoClasificador/VariablesGeneradas/datosMultiplesEsferas.mat', 'datosMultiplesEsferas');
+
+
 %Representacion
 coloresEsferas = [".g" ".m" ".y"];
-
 
 for r=4:6
     representa_datos_fondo(X,Y), hold on
