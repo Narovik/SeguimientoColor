@@ -25,7 +25,7 @@ for i=12:nImag
     DatosColor = [DatosColor; i*ones(length(R(ROI)),1) R(ROI), G(ROI), B(ROI)];    
 end
 
-save('./02_Extraer_Representar_Datos/DatosColor_naranja.mat', 'DatosColor');
+save('./02_Extraer_Representar_Datos/DatosColor.mat', 'DatosColor');
 
 
 %% 2.1.1 Almacenar en DatosFondo id imagen y sus valores RGB
@@ -42,7 +42,7 @@ for i=1:11
     DatosFondo = [DatosFondo; i*ones(length(R(ROI)),1) R(ROI), G(ROI), B(ROI)];    
 end
 
-save('./02_Extraer_Representar_Datos/DatosFondo_naranja.mat', 'DatosFondo');
+save('./02_Extraer_Representar_Datos/DatosFondo.mat', 'DatosFondo');
 
 
 %% 2.1.3 Generar el conjunto de datos X e Y
@@ -52,13 +52,13 @@ X = [DatosColor(:,2:4)          ;  DatosFondo(:,2:4)]; %Descartamos la col ident
 Y = [ones(size(DatosColor,1),1) ; zeros(size(DatosFondo,1),1)];
 
 % Guardamos las variables
-save('./02_Extraer_Representar_Datos/VariablesGeneradas/ConjuntoDatos_naranja.mat','X','Y');
+save('./02_Extraer_Representar_Datos/VariablesGeneradas/ConjuntoDatos.mat','X','Y');
 
 %% 2.2.1 Representacion de la informacion
 % Cargar el conjunto de datos de forma variable
-Color = 'naranja';
-sentenciaTexto = ['load ConjuntoDatos_' Color '.mat']; %Concatena
-eval(sentenciaTexto); %Ejecuta
+% Color = 'naranja';
+% sentenciaTexto = ['load ConjuntoDatos_' Color '.mat']; %Concatena
+% eval(sentenciaTexto); %Ejecuta
 
 representa_datos_color_seguimiento_fondo(X,Y);
 

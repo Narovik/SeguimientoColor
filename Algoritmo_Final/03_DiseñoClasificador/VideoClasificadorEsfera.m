@@ -1,7 +1,8 @@
 clear all, clc;
 load './01_GeneracionMaterial/ImagenesEntrenamiento_Naranja.mat';
 load '02_Extraer_Representar_Datos/VariablesGeneradas/ConjuntoDatos.mat';
-load('03_DiseñoClasificador/VariablesGeneradas/datosEsfera.mat');
+
+datosEsfera = calcula_datos_esfera(X,Y);
 
 % Cargar en variables los datos de la esfera
 Rc = datosEsfera(1); Gc = datosEsfera(2); Bc = datosEsfera(3);
@@ -19,8 +20,9 @@ for i=1:size(imagenes_naranja,4)
    IColor = imagenes_naranja(:,:,:,i);
    
    %Representar la imagen
-   figure, subplot(2,2,1), imshow(IColor), title(titulos(1));
+   figure, subplot(2,2,1), imshow(IColor), title([titulos(1) num2str(i)]);
    
+   %Deteccion por distancia
    R = double(IColor(:,:,1)); 
    G = double(IColor(:,:,2));
    B = double(IColor(:,:,3));

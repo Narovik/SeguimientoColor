@@ -1,5 +1,6 @@
+clear all, clc;
 % Cargamos los datos
-load 'VariablesGeneradas/ConjuntoDatos_naranja.mat';
+load 'VariablesGeneradas/ConjuntoDatos.mat';
 
 % Representacion
 representa_datos_color_seguimiento_fondo(X,Y);
@@ -75,7 +76,7 @@ rangoOutliersAtributos2
 clear all, clc
 
 % Cargamos los datos
-load 'VariablesGeneradas/ConjuntoDatos_naranja.mat';
+load 'VariablesGeneradas/ConjuntoDatos.mat';
 X = double(X);
 
 valoresY = unique(Y);
@@ -84,7 +85,7 @@ R = X(:,1);
 G = X(:,2);
 B = X(:,3);
 
-FoI = (Y==valoresY(1)); % Filas de la clase de interes
+FoI = (Y==1); % Filas de la clase de interes
 
 
 % Calculo de media y desviacion
@@ -94,7 +95,7 @@ Rmean = medias(1); Rstd = desv(1);
 Gmean = medias(2); Gstd = desv(2);
 Bmean = medias(3); Bstd = desv(3);
 
-factor_outlier = 2.5; % Segun el criterio, si queremos datos mas o menos dispersos
+factor_outlier = 3; % Segun el criterio, si queremos datos mas o menos dispersos
 % Consideramos valor atipico u outlier si es cualquiera de sus atributos
 % el valor está fuera del rango:
 % [media - 3*desv , media + 3*desv]
