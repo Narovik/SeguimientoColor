@@ -3,9 +3,6 @@ load './01_GeneracionMaterial/ImagenesEntrenamiento_Naranja.mat';
 load '02_Extraer_Representar_Datos/VariablesGeneradas/ConjuntoDatos.mat';
 load '03_DiseñoClasificador/VariablesGeneradas/datosMultiplesEsferas.mat';
 
-
-
-
 titulos(1) = "Imagen original";
 titulos(2) = 'Imagen con ruido r1 = ';
 titulos(3) = 'Imagen sin ruido r2 = ';
@@ -17,7 +14,7 @@ for i=1:size(imagenes_naranja,4)
    I = imagenes_naranja(:,:,:,i);
    
    %Representar la imagen
-   figure, subplot(2,2,1), imshow(I), title([titulos(1) num2str(i)]);
+   pause, subplot(2,2,1), imshow(I), title([titulos(1) num2str(i)]);
    
 
        % Imagen binaria de los puntos detectados como color
