@@ -1,3 +1,4 @@
+
 % Devuelve CENTROIDE_R CENTROIDE G_ CENTROIDE_B, RADIO1, RADIO2, RADIO12
 % RADIO1: engloba TODOS los valores del color de objeto
 function datosMultiplesEsferas = calcula_datos_esfera_agrupacion(X,Y)
@@ -5,10 +6,15 @@ function datosMultiplesEsferas = calcula_datos_esfera_agrupacion(X,Y)
     FoI = (Y==1); %Filas de interes: objeto
     XObjeto = X(FoI, :);
     XFondo = X(Y==0, :);
-    
+
+    k=4; % Numero de agrupaciones
+    idx = funcion_kmeans(XObjeto,k);
+    numAgrupaciones = length(unique(idx)); 
+
+
     datosMultiplesEsferas = zeros(numAgrupaciones, 6);
     for i=1:numAgrupaciones
-
+ 
         XAgrupacion = XObjeto(idx==i,:);
 
         %Nuevo conjunto de datos X
@@ -23,13 +29,10 @@ function datosMultiplesEsferas = calcula_datos_esfera_agrupacion(X,Y)
         % Añadirla a la solucion
         datosMultiplesEsferas(i,:) = datosEsfera;
 
-
     end
-
 end
 
-function datosEsfera = calcula_datos_esfera()
-    datosEsfera = [];
+function datosEsfera = calcula_datos_esfera(X,Y)
 
     %% 1 Calcular el centroide de la nube de puntos del color de seguimiento
     XObjeto = X(Y==1, :);
@@ -92,6 +95,5 @@ function datosEsfera = calcula_datos_esfera()
     datosEsfera = [datosEsfera r12];
 
 end
-
 
 
